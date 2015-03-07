@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/mainBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <TableLayout android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center">
+
+            <TableRow android:gravity="center" android:layout_marginBottom="20dp">
+
+                <TextView android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sign-in"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/mainText" />
+            </TableRow>
+
+            <TableRow android:gravity="center">
+                <TextView android:text="Email" style="@style/mainText"/>
+                <EditText android:inputType="textEmailAddress"  style="@style/mainEdit" android:id="@+id/loginEmailField" android:layout_span="0"/>
+            </TableRow>
+
+            <TableRow android:gravity="center">
+                <TextView android:text="Password" style="@style/mainText"/>
+                <EditText android:inputType="textPassword"  style="@style/mainEdit" android:id="@+id/loginPasswordField" android:layout_span="0"/>
+            </TableRow>
+
+            <TableRow android:gravity="center">
+                <TextView android:text="" style="@style/mainText" android:layout_span="2" android:textColor="@color/error" android:id="@+id/loginErrorMessage"
+                    android:textSize="12sp"/>
+            </TableRow>
+
+            <TableRow android:gravity="center">
+                <TextView android:text="Sign-in" style="@style/mainButton" android:id="@+id/signinButton"/>
+            </TableRow>
+
+            <TableRow android:gravity="center" android:layout_marginTop="20sp">
+                <TextView android:text="Not yet a member?" style="@style/mainText" android:gravity="center" android:layout_span="2" android:textColor="@color/mainText" android:id="@+id/signupText"
+                    android:textSize="12sp"/>
+            </TableRow>
+
+        </TableLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

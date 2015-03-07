@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mainBackground">#303030</color>
+    <color name="mainText">#2EB8B8</color>
+    <color name="mainInputText">#99CCFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="error">#ABE3E3</color>
+    <color name="start">#e83f3f</color>
+    <color name="black">#000000</color>
+    <color name="trans">#00000000</color>
+    <color name="gray">#282828</color>
+    <color name="popupBackground">#80000000</color>
+
+</resources>
