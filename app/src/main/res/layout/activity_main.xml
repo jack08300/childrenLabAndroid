@@ -16,12 +16,8 @@
 
             <TableRow android:gravity="center" android:layout_marginBottom="20dp">
 
-                <TextView android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Sign-in"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="@color/mainText" />
+                <TextView style="@style/mainTitleText"
+                    android:text="Sign-in" />
             </TableRow>
 
             <TableRow android:gravity="center">

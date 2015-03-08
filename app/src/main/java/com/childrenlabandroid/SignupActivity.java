@@ -21,8 +21,8 @@ import util.Tools;
 
 public class SignupActivity extends ActionBarActivity implements View.OnClickListener {
 
-    EditText emailEdit, fNameEdit, lNameEdit, errorMessage, passwordEdit, phoneEdit;
-    TextView signupButton;
+    EditText emailEdit, fNameEdit, lNameEdit, passwordEdit, phoneEdit;
+    TextView signupButton, errorMessage;
     String email, token, password, fname, lname, phone;
     RadioGroup genderGroup;
 
@@ -34,7 +34,7 @@ public class SignupActivity extends ActionBarActivity implements View.OnClickLis
         fNameEdit = (EditText) findViewById(R.id.fNameEdit);
         lNameEdit = (EditText) findViewById(R.id.lNameEdit);
         emailEdit = (EditText) findViewById(R.id.emailEdit);
-        errorMessage = (EditText) findViewById(R.id.errorMessage);
+        errorMessage = (TextView) findViewById(R.id.errorMessage);
         passwordEdit = (EditText) findViewById(R.id.passwordEdit);
         signupButton = (TextView) findViewById(R.id.signupButton);
         genderGroup = (RadioGroup) findViewById(R.id.genderGroup);

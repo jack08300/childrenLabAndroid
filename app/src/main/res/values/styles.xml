@@ -7,7 +7,7 @@
 
     <style name="mainEdit">
         <item name="android:textColor">@color/mainInputText</item>
-        <item name="android:width">150dp</item>
+        <item name="android:width">180dp</item>
         <item name="android:layout_span">3</item>
         <item name="android:drawableBottom">@drawable/edit_text_box</item>
         <item name="android:background">@color/trans</item>
@@ -16,7 +16,17 @@
     <style name="mainText" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/mainText</item>
         <item name="android:layout_margin">10dp</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">@dimen/default_text</item>
+    </style>
+
+    <style name="mainTitleText" parent="@android:style/TextAppearance">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/mainText</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textSize">@dimen/default_title</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="mainButton">

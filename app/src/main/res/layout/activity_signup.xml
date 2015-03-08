@@ -7,7 +7,7 @@
     <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
         <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content">
             <TableRow android:gravity="center">
-                <EditText android:inputType="text" android:id="@+id/errorMessage" android:background="@color/trans"
+                <TextView android:inputType="text" android:id="@+id/errorMessage" android:background="@color/trans"
                     android:layout_span="4" android:layout_width="match_parent" android:textColor="@color/error"/>
             </TableRow>
             <TableRow android:gravity="center">
