@@ -29,7 +29,22 @@
             android:name=".SignupActivity"
             android:label="@string/title_activity_signup" >
         </activity>
+        <activity
+            android:name=".MainMenuActivity"
+            android:label="@string/title_activity_main_menu" >
+        </activity>
+        <activity
+            android:name=".ScheduleActvitiy"
+            android:label="@string/title_activity_schedule_actvitiy" >
+        </activity>
+        <activity
+            android:name=".KidsActivity"
+            android:label="@string/title_activity_kids" >
+        </activity>
+        <activity
+            android:name=".DeviceActivity"
+            android:label="@string/title_activity_device" >
+        </activity>
     </application>
-
 
 </manifest>

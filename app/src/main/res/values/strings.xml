@@ -1,8 +1,15 @@
 <resources>
-    <string name="app_name">KidsApp</string>
+
+    <string name="relicKey">AAacf2fd03ddee52b39c7c6c9a48cac7993123d773</string>
+    <string name="version">0.1</string>
+    <string name="app_name">ChildrenLab_android</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_data">DataActivity</string>
     <string name="title_activity_signup">Signup</string>
+    <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="title_activity_schedule_actvitiy">ScheduleActvitiy</string>
+    <string name="title_activity_kids">KidsActivity</string>
+    <string name="title_activity_device">DeviceActivity</string>
 </resources>

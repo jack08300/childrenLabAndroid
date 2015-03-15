@@ -25,7 +25,7 @@ public class Server extends AsyncTask<String, Integer, JSONObject> {
     private Context context;
 
     protected final String host = "http://www.childrenLab.com/";
-//    protected final String host = "http://10.0.2.2:8080/childrenLab/";
+//    protected final String host = "http://10.0.2.2:8070/childrenLab/";
 
     public Server(Context context){
         this.context = context;
@@ -52,8 +52,9 @@ public class Server extends AsyncTask<String, Integer, JSONObject> {
             request.setURI(serverAPI);
             HttpResponse response = httpclient.execute(request);
 
-            if(response.getStatusLine().getStatusCode() == 401){
-                if(urls[0].contains("api/login")){
+            Log.d("Response Status", String.valueOf(response.getStatusLine().getStatusCode()));
+            if(response.getStatusLine().getStatusCode() == 403){
+                if(urls[0].contains("api/login") || urls[0].contains("test/token")){
                     JSONObject obj = new JSONObject();
                     obj.put("success", false);
                     sharedData.edit().putString("token", null).apply();
@@ -61,6 +62,9 @@ public class Server extends AsyncTask<String, Integer, JSONObject> {
                 }else{
                     Intent intent = new Intent(context, MainActivity.class);
                     context.startActivity(intent);
+                    JSONObject obj = new JSONObject();
+                    obj.put("success", false);
+                    return obj;
                 }
 
             }

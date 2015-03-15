@@ -8,8 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.childrenlabandroid.DataActivity;
-import com.childrenlabandroid.SignupActivity;
+
+import com.newrelic.agent.android.NewRelic;
 
 import data.User;
 import util.Tools;
@@ -23,6 +23,14 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        NewRelic.withApplicationToken(getString(R.string.relicKey)).start(this.getApplication());
+
+        //try to login
+        User user = new User(this);
+        if(user.login()){
+            loginSuccess();
+        }
 
         emailField = (TextView) findViewById(R.id.loginEmailField);
         passwordField = (TextView) findViewById(R.id.loginPasswordField);
@@ -67,9 +75,7 @@ public class MainActivity extends ActionBarActivity {
                 @Override
                 public void run() {
                     if(user.login(email, password)){
-                        Intent dailyIntent = new Intent(MainActivity.this, DataActivity.class);
-                        startActivity(dailyIntent);
-                        finish();
+                        loginSuccess();
                     }else{
                         displayError("Wrong Email or Password.");
                         signinButton.setEnabled(true);
@@ -82,6 +88,12 @@ public class MainActivity extends ActionBarActivity {
             displayError("Check your email and password.");
             signinButton.setEnabled(true);
         }
+    }
+
+    public void loginSuccess(){
+        Intent mainIntent = new Intent(MainActivity.this, MainMenuActivity.class);
+        startActivity(mainIntent);
+        finish();
     }
 
     public void displayError(String message){

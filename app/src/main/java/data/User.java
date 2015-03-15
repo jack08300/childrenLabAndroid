@@ -64,9 +64,9 @@ public class User {
 
     public boolean login(){
         try{
+            Server server = new Server(context);
 
             if(!hasToken()){
-                Server server = new Server(context);
                 JSONObject resultJSON = server.execute("api/login?" + "email=" + email + "&password=" + password).get();
 
                 Log.d("Login Response", resultJSON.toString());
@@ -84,7 +84,14 @@ public class User {
                     return false;
                 }
             }else{
-                return true;
+                //check if token is working
+                if(sharedData.getString("token", null) != null){
+                    JSONObject resultJSON = server.execute("test/token").get();
+                    return resultJSON.getBoolean("success");
+                }
+
+                return false;
+
             }
 
 
@@ -97,7 +104,7 @@ public class User {
     public boolean logout(){
         try{
             Server server = new Server(context);
-            server.execute("api/logout").get();
+            server.execute("logout").get();
 
 
             sharedData.edit().putString("token", null).apply();

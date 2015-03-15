@@ -5,26 +5,20 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import data.User;
 
-
-public class DataActivity extends ActionBarActivity {
-
-    User user;
+public class KidsActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_data);
-
-        user = new User(this);
+        setContentView(R.layout.activity_kids);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_data, menu);
+        getMenuInflater().inflate(R.menu.menu_kids, menu);
         return true;
     }
 
@@ -38,13 +32,6 @@ public class DataActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }
-
-        switch(id){
-            case R.id.logout:
-                user.logout();
-                break;
-
         }
 
         return super.onOptionsItemSelected(item);
