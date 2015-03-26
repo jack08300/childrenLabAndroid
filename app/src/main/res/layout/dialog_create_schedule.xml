@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    android:background="@color/mainBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center">
+        <TableRow android:gravity="center">
+            <TextView android:text="From: " style="@style/mainText"/>
+            <TextView style="@style/mainText" android:id="@+id/startDateText"/>
+        </TableRow>
+
+        <TableRow android:gravity="center">
+            <TextView android:text="To: " style="@style/mainText"/>
+            <TextViewa style="@style/mainText" android:id="@+id/endDateText"/>
+        </TableRow>
+
+        <TableRow android:gravity="center">
+            <TextView android:text="You Need:" style="@style/mainText"/>
+            <Spinner
+                android:id="@+id/scheduleType"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow android:gravity="center">
+            <TextView android:text="Per Hour: $" style="@style/mainText"/>
+            <EditText android:inputType="number"  style="@style/mainEdit" android:id="@+id/schedulePerHourEdit"/>
+        </TableRow>
+
+        <TableRow android:gravity="center">
+            <EditText android:inputType="textMultiLine" android:layout_width="fill_parent" android:layout_height="wrap_content" android:gravity="top"
+                style="@style/editarea" android:id="@+id/scheduleNoteEdit" android:singleLine="false" android:lines="3" android:hint="Note"/>
+        </TableRow>
+
+        <TableRow android:gravity="center">
+            <TextView android:text="Confirm" style="@style/mainButton" android:id="@+id/scheduleCreateConfirm" android:textSize="@dimen/default_button"/>
+            <TextView android:text="Cancel" style="@style/mainButton" android:id="@+id/scheduleCancelButton" android:textSize="@dimen/default_button"/>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

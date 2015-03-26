@@ -38,7 +38,7 @@ public class MainMenuActivity extends ActionBarActivity implements View.OnClickL
     public void onClick(View view){
         switch(view.getId()){
             case R.id.scheduleButton:
-                Intent scheduleIntent = new Intent(MainMenuActivity.this, ScheduleActvitiy.class);
+                Intent scheduleIntent = new Intent(MainMenuActivity.this, ScheduleActivity.class);
                 startActivity(scheduleIntent);
                 break;
             case R.id.kidsButton:

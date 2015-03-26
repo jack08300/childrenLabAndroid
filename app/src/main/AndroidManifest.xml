@@ -34,16 +34,20 @@
             android:label="@string/title_activity_main_menu" >
         </activity>
         <activity
-            android:name=".ScheduleActvitiy"
-            android:label="@string/title_activity_schedule_actvitiy" >
-        </activity>
-        <activity
             android:name=".KidsActivity"
             android:label="@string/title_activity_kids" >
         </activity>
         <activity
             android:name=".DeviceActivity"
             android:label="@string/title_activity_device" >
+        </activity>
+        <activity
+            android:name=".ScheduleActivity"
+            android:label="@string/title_activity_schedule" >
+        </activity>
+        <activity
+            android:name=".MyScheduleActivity"
+            android:label="@string/title_activity_my_schedule" >
         </activity>
     </application>
 
