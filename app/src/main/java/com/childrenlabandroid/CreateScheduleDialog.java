@@ -33,7 +33,7 @@ public class CreateScheduleDialog extends Dialog implements View.OnClickListener
         this.callback = callback;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.activity = a;
+        this.activity = a; abc
     }
 
     @Override
