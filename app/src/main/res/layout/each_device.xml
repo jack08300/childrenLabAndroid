@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/mainBackground"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:background="@drawable/schedule_list_border">
+        <TableRow android:gravity="center">
+            <TextView android:text="Name: " style="@style/mainText" android:textSize="@dimen/default_text" />
+            <TextView android:text=" " style="@style/mainText" android:textSize="@dimen/default_text" android:id="@+id/deviceName" />
+        </TableRow>
+
+        <TableRow android:gravity="center">
+            <TextView android:text="Address: " style="@style/mainText" android:textSize="@dimen/default_text" />
+            <TextView android:text=" " style="@style/mainText" android:textSize="@dimen/default_text" android:id="@+id/deviceAddress" />
+        </TableRow>
+
+        <TableRow android:gravity="center">
+            <TextView android:text="PAIR" style="@style/mainButton" android:id="@+id/pairButton" android:textSize="@dimen/default_title"/>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

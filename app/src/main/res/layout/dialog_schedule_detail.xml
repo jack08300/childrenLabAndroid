@@ -11,6 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
         <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center">
             <TableRow android:gravity="center">
                 <TextView android:text="Schedule " style="@style/mainText"/>
@@ -32,8 +38,27 @@
                 <TextView style="@style/mainText" android:layout_span="2" android:id="@+id/scheduleDetailNote"/>
             </TableRow>
 
+            <TableRow android:gravity="center">
+                <TextView style="@style/mainButton"
+                    android:text="Leave Message"
+                    android:layout_span="2"
+                    android:id="@+id/scheduleLeaveMessageButton"/>
+            </TableRow>
+
 
         </TableLayout>
+
+            <LinearLayout
+                android:id="@+id/scheduleMessageListLayout"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                </LinearLayout>
+
+
+        </LinearLayout>
 
     </ScrollView>
 

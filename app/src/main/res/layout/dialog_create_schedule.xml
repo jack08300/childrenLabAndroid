@@ -15,7 +15,7 @@
 
         <TableRow android:gravity="center">
             <TextView android:text="To: " style="@style/mainText"/>
-            <TextViewa style="@style/mainText" android:id="@+id/endDateText"/>
+            <TextView style="@style/mainText" android:id="@+id/endDateText"/>
         </TableRow>
 
         <TableRow android:gravity="center">
