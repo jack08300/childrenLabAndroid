@@ -1,9 +1,15 @@
 package com.childrenlabandroid;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import data.User;
 
 
 public class KidsActivity extends ActionBarActivity {
@@ -12,6 +18,15 @@ public class KidsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kids);
+
+        Button addKidsButton = (Button)findViewById(R.id.addKidsButton);
+        addKidsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), AddKidsActivity.class);
+                startActivityForResult(intent,0);
+            }
+        });
     }
 
 
