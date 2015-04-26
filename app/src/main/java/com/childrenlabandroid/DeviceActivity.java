@@ -38,8 +38,9 @@ public class DeviceActivity extends ActionBarActivity implements View.OnClickLis
     private LinearLayout deviceList;
     private Set<BluetoothDevice> bluetoothDevices;
 
-    private static final UUID uuid2 = UUID.fromString("91c10edc-8616-4cbf-bc79-0bf54ed2fa17");
-    private static final ParcelUuid uuid = ParcelUuid.fromString("91c10edc-8616-4cbf-bc79-0bf54ed2fa17");
+    private static final String serverUUIDString = "91c10edc-8616-4cbf-bc79-0bf54ed2fa17";
+    private static final UUID serverUUID = UUID.fromString(serverUUIDString);
+    private static final UUID notificationUUID = UUID.fromString("09a44002-cd70-4b7a-b46f-cc4cdbab1bb4");
 
     BluetoothManager bluetoothManager;
     BluetoothAdapter adapter;
@@ -163,7 +164,7 @@ public class DeviceActivity extends ActionBarActivity implements View.OnClickLis
             deviceAddress.setText(device.getAddress());
 
             if(paired){
-                pairButton.setText("PAIR");
+                pairButton.setText("DISCONNECTED");
             }
 
             pairButton.setOnClickListener(new View.OnClickListener() {
@@ -176,9 +177,11 @@ public class DeviceActivity extends ActionBarActivity implements View.OnClickLis
                             connectToDevice(device);
 
                         }else{
-                            Method method = device.getClass().getMethod("removeBond", (Class[]) null);
-                            method.invoke(device, (Object[]) null);
-                            pairButton.setText("Pair");
+                            if(gatt != null){
+                                gatt.discoverServices();
+                            }
+
+                            pairButton.setText("PAIR");
                         }
 
                     } catch (Exception e) {
@@ -198,8 +201,6 @@ public class DeviceActivity extends ActionBarActivity implements View.OnClickLis
         Log.d("connecting", "bluetooth");
         if (gatt == null) {
             gatt = device.connectGatt(this, false, gattCallback);
-        }else{
-            gatt.discoverServices();
         }
     }
 
@@ -251,9 +252,8 @@ public class DeviceActivity extends ActionBarActivity implements View.OnClickLis
         @Override
         public void onServicesDiscovered(BluetoothGatt gatt, int status){
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                BluetoothGattCharacteristic ch = gatt.getService(UUID.fromString("91c10edc-8616-4cbf-bc79-0bf54ed2fa17"))
-                        .getCharacteristic(UUID.fromString("09a44002-cd70-4b7a-b46f-cc4cdbab1bb4"));
-
+                BluetoothGattCharacteristic ch = gatt.getService(serverUUID)
+                        .getCharacteristic(notificationUUID);
 
                 gatt.setCharacteristicNotification(ch, true);
 
@@ -268,9 +268,9 @@ public class DeviceActivity extends ActionBarActivity implements View.OnClickLis
 
 
 
-                if(!gatt.readCharacteristic(ch)){
-                    Log.e("Read characteristic", "can't read 09a44002-cd70-4b7a-b46f-cc4cdbab1bb4");
-                }
+//                if(!gatt.readCharacteristic(ch)){
+//                    Log.e("Read characteristic", "can't read 09a44002-cd70-4b7a-b46f-cc4cdbab1bb4");
+//                }
                 //BluetoothGattCharacteristic bch = service.getCharacteristic((UUID.fromString("91c10edc-8616-4cbf-bc79-0bf54ed2fa17")));
                 //BluetoothGattDescriptor descriptor = ch.getDescriptor(UUID.fromString("09a44002-cd70-4b7a-b46f-cc4cdbab1bb4"));
                 //descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
@@ -290,7 +290,7 @@ public class DeviceActivity extends ActionBarActivity implements View.OnClickLis
 
     private List<ScanFilter> scanFilters() {
 
-        ScanFilter filter = new ScanFilter.Builder().setServiceUuid(uuid).build();
+        ScanFilter filter = new ScanFilter.Builder().setServiceUuid(ParcelUuid.fromString(serverUUIDString)).build();
         List<ScanFilter> list = new ArrayList<>(1);
         list.add(filter);
         return list;
@@ -310,6 +310,17 @@ public class DeviceActivity extends ActionBarActivity implements View.OnClickLis
     public void searchDevice(){
         bluetoothStatusText.setText("Searching....");
         deviceList.removeAllViews();
+
+        Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
+        // If there are paired devices
+        if (pairedDevices.size() > 0) {
+            // Loop through paired devices
+            for (BluetoothDevice device : pairedDevices) {
+                // Add the name and address to an array adapter to show in a ListView
+                Log.d("Pared device", device.getName() + " " + device.getAddress());
+            }
+        }
+
         scanner.startScan(scanFilters(), settings, scanCallback);
         Log.d("blueTooth","Scanner started");
 
