@@ -6,10 +6,8 @@ import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCallback;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
-import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
-import android.bluetooth.BluetoothSocket;
 import android.bluetooth.le.*;
 import android.content.Intent;
 import android.os.ParcelUuid;
@@ -24,9 +22,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -43,7 +38,6 @@ public class DeviceActivity extends ActionBarActivity implements View.OnClickLis
     private LinearLayout deviceList;
     private Set<BluetoothDevice> bluetoothDevices;
 
-    public String address;
     private static final UUID uuid2 = UUID.fromString("91c10edc-8616-4cbf-bc79-0bf54ed2fa17");
     private static final ParcelUuid uuid = ParcelUuid.fromString("91c10edc-8616-4cbf-bc79-0bf54ed2fa17");
 
@@ -109,6 +103,14 @@ public class DeviceActivity extends ActionBarActivity implements View.OnClickLis
         if (requestCode == REUQEST_ENABLE) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
+
+                if(scanner == null){
+                    bluetoothManager = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
+                    adapter = bluetoothManager.getAdapter();
+                    scanner = adapter.getBluetoothLeScanner();
+                }
+
+
                 bluetoothSwitchText.setText("ON");
                 searchDevice();
             }
@@ -235,6 +237,15 @@ public class DeviceActivity extends ActionBarActivity implements View.OnClickLis
         public void onDescriptorRead(BluetoothGatt gatt,
                                      BluetoothGattDescriptor descriptor, int status){
             Log.d("onDescriptorRead read", "readinginging");
+
+            if(status == BluetoothGatt.GATT_SUCCESS){
+                Log.d("Length", String.valueOf(descriptor.getValue().length));
+                for(int i=0;i<descriptor.getValue().length;i++){
+                    Log.d("value", String.valueOf(descriptor.getValue()[i]));
+                }
+            }else{
+                Log.e("onDescriptorRead Error", "The status: " + String.valueOf(status));
+            }
         }
 
         @Override
@@ -243,10 +254,23 @@ public class DeviceActivity extends ActionBarActivity implements View.OnClickLis
                 BluetoothGattCharacteristic ch = gatt.getService(UUID.fromString("91c10edc-8616-4cbf-bc79-0bf54ed2fa17"))
                         .getCharacteristic(UUID.fromString("09a44002-cd70-4b7a-b46f-cc4cdbab1bb4"));
 
-/*                if(!gatt.readCharacteristic(ch)){
-                    Log.e("Read characteristic", "can't read 09a44002-cd70-4b7a-b46f-cc4cdbab1bb4");
-                }*/
+
                 gatt.setCharacteristicNotification(ch, true);
+
+                List<BluetoothGattDescriptor> list = ch.getDescriptors();
+                for(int i=0;i<list.size();i++){
+                    Log.d("Descriptor", String.valueOf(list.get(i).getUuid()));
+                }
+
+                BluetoothGattDescriptor descriptor = ch.getDescriptor(list.get(1).getUuid());
+                descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+                gatt.readDescriptor(descriptor);
+
+
+
+                if(!gatt.readCharacteristic(ch)){
+                    Log.e("Read characteristic", "can't read 09a44002-cd70-4b7a-b46f-cc4cdbab1bb4");
+                }
                 //BluetoothGattCharacteristic bch = service.getCharacteristic((UUID.fromString("91c10edc-8616-4cbf-bc79-0bf54ed2fa17")));
                 //BluetoothGattDescriptor descriptor = ch.getDescriptor(UUID.fromString("09a44002-cd70-4b7a-b46f-cc4cdbab1bb4"));
                 //descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
@@ -284,6 +308,7 @@ public class DeviceActivity extends ActionBarActivity implements View.OnClickLis
     };
 
     public void searchDevice(){
+        bluetoothStatusText.setText("Searching....");
         deviceList.removeAllViews();
         scanner.startScan(scanFilters(), settings, scanCallback);
         Log.d("blueTooth","Scanner started");
