@@ -20,4 +20,6 @@
     <string name="title_activity_device">DeviceActivity</string>
     <string name="title_activity_schedule">ScheduleActivity</string>
     <string name="title_activity_my_schedule">MyScheduleActivity</string>
+    <string name="title_activity_add_kids">AddKidsActivity</string>
+    <string name="title_activity_list_kids">ListKidsActivity</string>
 </resources>

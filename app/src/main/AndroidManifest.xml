@@ -49,6 +49,22 @@
             android:name=".MyScheduleActivity"
             android:label="@string/title_activity_my_schedule" >
         </activity>
+        <activity
+            android:name=".AddKidsActivity"
+            android:label="@string/title_activity_add_kids"
+            android:parentActivityName=".KidsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.childrenlabandroid.KidsActivity" />
+        </activity>
+        <activity
+            android:name=".ListKidsActivity"
+            android:label="@string/title_activity_list_kids"
+            android:parentActivityName=".KidsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.childrenlabandroid.KidsActivity" />
+        </activity>
     </application>
 
 </manifest>

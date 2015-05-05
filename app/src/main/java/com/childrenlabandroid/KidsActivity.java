@@ -14,20 +14,33 @@ import data.User;
 
 public class KidsActivity extends ActionBarActivity {
 
+    TextView addKidsButton,listKidsButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kids);
 
-        Button addKidsButton = (Button)findViewById(R.id.addKidsButton);
+        addKidsButton=(TextView)findViewById(R.id.addKidsButton);
         addKidsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), AddKidsActivity.class);
-                startActivityForResult(intent,0);
+                Intent addIntent = new Intent(KidsActivity.this, AddKidsActivity.class);
+                startActivity(addIntent);
+
+            }
+        });
+        listKidsButton=(TextView)findViewById(R.id.listKidsButton);
+        listKidsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent listIntent = new Intent(KidsActivity.this, ListKidsActivity.class);
+                startActivity(listIntent);
+
             }
         });
     }
+
 
 
     @Override
