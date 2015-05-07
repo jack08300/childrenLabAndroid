@@ -35,7 +35,7 @@ public class AddKidsActivity extends ActionBarActivity {
         NNameEdit = (EditText) findViewById(R.id.NNameEdit);
         BirthdayEdit = (EditText) findViewById(R.id.BirthdayEdit);
         SREdit = (EditText) findViewById(R.id.SREdit);
-        EnterButton.setOnClickListener();
+//        EnterButton.setOnClickListener();
 
     }
 
@@ -61,7 +61,8 @@ public class AddKidsActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    public void onClick(View v){
+}
+/*    public void onClick(View v){
         switch (v.getId()){
             case R.id.EnterButton:
                 if(checkInput()){
@@ -82,7 +83,7 @@ public class AddKidsActivity extends ActionBarActivity {
             }
             Server server = new Server(this);
 
-/*            String url = "user/register?email=" + email + "&password=" + password + "&lastName=" + lname + "&firstName=" + fname  + "&sex=" +
+            String url = "user/register?email=" + email + "&password=" + password + "&lastName=" + lname + "&firstName=" + fname  + "&sex=" +
                     gender + "&phoneNumber=" + phone;
 
             JSONObject result = server.execute(url).get();
@@ -93,7 +94,7 @@ public class AddKidsActivity extends ActionBarActivity {
 
                 Intent dailyIntent = new Intent(AddKidsActivity.this, DataActivity.class);
                 startActivity(dailyIntent);
-*/                finish();
+                finish();
             }else{
                 Toast.makeText(getApplicationContext(),
                         "Error on register, please try again later.", Toast.LENGTH_LONG).show();
@@ -109,3 +110,5 @@ public class AddKidsActivity extends ActionBarActivity {
     }
 
 }
+
+*/
